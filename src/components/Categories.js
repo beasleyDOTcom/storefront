@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import { setActiveCategory } from '../store/products.js';
 
-function Categories(props) {
+const Categories = (props) => {
     return (
 
-        <h1>You're in Categories{props.activeCategory}</h1>
+        <h1 onClick={()=>props.setActiveCategory('shoes')}>{props.activeCategory}</h1>
     )
 }
 const mapStateToProps = (state) =>{
@@ -15,5 +16,7 @@ const mapStateToProps = (state) =>{
     }
 }
 
-// const mapDispatchToProps = 
-export default connect(mapStateToProps)( Categories)
+const mapDispatchToProps = {
+    setActiveCategory,
+}
+export default connect(mapStateToProps, mapDispatchToProps)( Categories)
