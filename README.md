@@ -5,6 +5,11 @@ As a user, I expect to see a list of available product categories in the store s
 As a user, I want to choose a category and see a list of all available products matching that category
 As a user, I want a clean, easy to use user interface so that I can shop the online store with confidence
 
+# day 1
+finally got the state to update and reflect "onClick" on the page my main issue here was that I was trying to directly assign a part of of the state object. When I rephrased the assignment to {activeCategory: payload} from state.activeCatogory = payload everything worked as it should"
+[redux e62e38e] finally got the state to update and reflect onClick on the page my main issue here was that I was trying to directly assign a part of of the state object. When I rephrased the assignment to {activeCategory: payload} from state.activeCatogory = payload everything worked as it should
+
+
 
 
 
