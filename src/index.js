@@ -9,7 +9,6 @@ import store from './store/index.js';
 function Main(){
   return (
     <Provider store={store}>
-    
       <App/>
       </Provider>
   

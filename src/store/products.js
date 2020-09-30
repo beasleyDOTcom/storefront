@@ -4,7 +4,7 @@
 //define initial state
 const initialState = {
     activeCategory: 'hell',
-    category:[
+    categories:[
         {name: 'discography',  displayName: 'Discography'},
         {name: 'clothing',  displayName: 'Sick Threads'},
         {name: 'pickles',  displayName: 'Pickles'},
@@ -27,8 +27,8 @@ export default (state = initialState, action) => {
     const { type, payload } = action;
 
     switch(type){
-        case 'CATEGORY':
-        return { ...state, activeCategory:payload}
+        case 'ACTIVE_CATEGORY':
+        return { ...state, activeCategory:payload }
         
 
         default:
@@ -38,9 +38,9 @@ export default (state = initialState, action) => {
 };
 
 
-export const category = (category)=>{
+export const activeCategory = (category)=>{
    return   { 
-       type:'CATEGORY', 
+       type:'ACTIVE_CATEGORY', 
        payload: category, 
     }
 }
