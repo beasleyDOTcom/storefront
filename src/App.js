@@ -7,7 +7,7 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Products from './components/Products.js';
 
-export default props => {
+export default () => {
   return (
 <>
     <Header/>

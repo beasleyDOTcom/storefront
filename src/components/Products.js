@@ -10,8 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
+import { addToCart } from '../store/cartStore.js';
 
 
+// cart items and price 
+// when yous elect add to cart the state changes and the cart is updated 
+// 
 const useStyles = makeStyles((theme) =>({
     cardGrid:{
         paddingTop: theme.spacing(8),
@@ -52,7 +56,7 @@ function Products(props) {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" color="primary">
+                                <Button onClick={()=>props.addToCart(product)} size="small" color="primary">
                                     Add 2 Cart
                                 </Button>
                                 <Button size="small" color="primary">
@@ -72,9 +76,9 @@ const mapStateToProps = (state) =>({
     products: state.products.products,
     ActiveCategory:state.products.activeCategory
 })
-// const mapDispatchToProps = {
+const mapDispatchToProps = {
+    addToCart,
+}
 
-// }
 
-
-export default connect(mapStateToProps, null)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
