@@ -7,8 +7,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 //import reducers
 import products from './products.js';
+import cartStore from './cartStore.js';
 
-let reducers = combineReducers({products});
+let reducers = combineReducers({products, cartStore});
 
 const store = () =>{
     return createStore(reducers, composeWithDevTools());

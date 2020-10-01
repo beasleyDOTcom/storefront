@@ -6,7 +6,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { category, products } from '../store/products.js';
+import { activeCategory } from '../store/products.js';
+import { deleteFromCart } from '../store/cartStore.js';
 
 const useStyles = makeStyles((theme) =>({
     categories:{
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) =>({
 }));
 
 const Categories = (props) => {
+    console.log('this is props in Categories.js', props.categories)
     const classes = useStyles();
 
     return (
@@ -24,9 +26,19 @@ const Categories = (props) => {
                 {props.categories.map(cat =>
                 <Button
                     key={cat._id} color="primary"
-                    onClick={()=> props.category(cat.name)}>
+                     onClick={()=> props.activeCategory(cat.name)}>
                         {cat.displayName || cat.name}
                     </Button>
+                    )}
+            </ButtonGroup>
+            <ButtonGroup align="right" variant="text" color="primary" aria-label="text primary button group">
+                {props.cart.map(item =>
+                <h4>{item.name}
+                    <Button
+                    key={item.id} color="primary"
+                    onClick={()=> props.deleteFromCart(item)}>X</Button>
+                    </h4>
+                    
                     )}
             </ButtonGroup>
         </div>
@@ -34,16 +46,17 @@ const Categories = (props) => {
         // <h1 onClick={()=>props.category('shoes')}>{props.activeCategory}</h1>
     )
 }
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) =>({
         //return object key you want to return on props, and the values you want associated with that prop
 //this value (state.products) comes directly from the reducer {products}
-    return {
         categories: state.products.categories, 
-        category: state.products      
-    }
-}
+        cart:state.cartStore,
+        // category: state.categories     
+    
+})
 
 const mapDispatchToProps = {
-    category,
+    activeCategory,
+    deleteFromCart,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

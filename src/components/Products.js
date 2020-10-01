@@ -9,7 +9,13 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
+import { addToCart } from '../store/cartStore.js';
 
+
+// cart items and price 
+// when yous elect add to cart the state changes and the cart is updated 
+// 
 const useStyles = makeStyles((theme) =>({
     cardGrid:{
         paddingTop: theme.spacing(8),
@@ -30,12 +36,12 @@ const useStyles = makeStyles((theme) =>({
 
 function Products(props) {
     const classes = useStyles();
-    const products = props.store.products.filter(product => product.category === props.store.activeCategory)
+    const products = props.products.filter(product =>  product.category === props.ActiveCategory)
     return (
         <>
             <Container className={classes.cardGrid} maxWidth="md">
                 <Grid container spacing={4}>
-                    {products.map((product) =>
+                  {products.map((product) =>
                     <Grid item key={product.name} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
                             <CardMedia className={classes.cardMedia}
@@ -50,7 +56,7 @@ function Products(props) {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" color="primary">
+                                <Button onClick={()=>props.addToCart(product)} size="small" color="primary">
                                     Add 2 Cart
                                 </Button>
                                 <Button size="small" color="primary">
@@ -66,5 +72,13 @@ function Products(props) {
         
     )
 }
+const mapStateToProps = (state) =>({
+    products: state.products.products,
+    ActiveCategory:state.products.activeCategory
+})
+const mapDispatchToProps = {
+    addToCart,
+}
 
-export default Products;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

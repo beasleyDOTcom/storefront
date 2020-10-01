@@ -4,17 +4,17 @@
 //define initial state
 const initialState = {
     activeCategory: 'hell',
-    category:[
+    categories:[
         {name: 'discography',  displayName: 'Discography'},
         {name: 'clothing',  displayName: 'Sick Threads'},
         {name: 'pickles',  displayName: 'Pickles'},
     ],
     products: [
-        { name: 'Be Your Shape', category: 'discography', price: 999.99, inStock: 99},
-        { name: 'Spicy Pickled Veggies', category: 'pickles', price: 49.99, inStock: 49},
-        { name: 'Sweet and Sour Hatch Pepper Pickles', category: 'pickles', price:79.99, inStock: 79},
-        { name: 'There\'s a place here for you', category: 'discography', price: 89.99, inStock: 89},
-        { name: 'Mushroom Hat', category: 'clothing', price: 9999.99, inStock: 999},
+        {id: 792384023, name: 'Be Your Shape', category: 'discography', price: 999.99, inStock: 99},
+        {id:93248129, name: 'Spicy Pickled Veggies', category: 'pickles', price: 49.99, inStock: 49},
+        {id:23939384, name: 'Sweet and Sour Hatch Pepper Pickles', category: 'pickles', price:79.99, inStock: 79},
+        { id:234234234, name: 'There\'s a place here for you', category: 'discography', price: 89.99, inStock: 89},
+        { id: 398098098,name: 'Mushroom Hat', category: 'clothing', price: 9999.99, inStock: 999},
     ],
 }
 
@@ -27,8 +27,8 @@ export default (state = initialState, action) => {
     const { type, payload } = action;
 
     switch(type){
-        case 'CATEGORY':
-        return { ...state, activeCategory:payload}
+        case 'ACTIVE_CATEGORY':
+        return { ...state, activeCategory:payload }
         
 
         default:
@@ -38,9 +38,9 @@ export default (state = initialState, action) => {
 };
 
 
-export const category = (category)=>{
+export const activeCategory = (category)=>{
    return   { 
-       type:'CATEGORY', 
+       type:'ACTIVE_CATEGORY', 
        payload: category, 
     }
 }
